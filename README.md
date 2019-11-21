@@ -1,28 +1,25 @@
-# Mini-soccer-field-
+# Sleepz
 
-This app is created to manage the mini soccer field and the stuff. Besides that, it is also a convienient tool for statistics and reporting monthly.
+This app is created to help people sleep better by annouce to them their sleep cycle.
 
 # Why is this app created?
 
-Because it's the way for us to pass this subject.
+This is my first mobile app, so i want to make something that help people health.
 
 # What can we do?
 
-Basically, Mini-soccer-field will help you in the way you manage infrastructure of soccer field, schedule of soccer field and the budget you get from field daily/monthly/yearly, including:
-*
-*
-*
-*
-*
+* Firstly, this app can set alarm based on sleep cycle theory, so that after waking up you'll feel better.
+* Secondly, we follow your sleep based on your sleeping time and then giving to you the chart of your sleep status.
+* Finally, we have some tips that help you can sleep easily such as listening to music,...
 
 # Technologies
 
-* Programming language: C#
-* DB: SQL Server
-
+* Programming language: Java
+* DB: SQLite
+* Environment: Android
 # Tool
 
-* We coded this app by using VISUAL STUDIO.
+* We coded this app by using ANDROID STUDIO.
 
 # Getting started
 ## Presiquities INSTALL SQL SERVER version 2017
@@ -37,8 +34,9 @@ Basically, Mini-soccer-field will help you in the way you manage infrastructure 
 
   * Võ Văn Tài Triển - University of Information Technology - Software Engineering - Student ID: 1752 1158
   * Nguyễn Duy Tân - University of Information Technology - Software Engineering - Student ID: 1752 1014
-  * Lý Đạo Nam - University of Information Technology - Software Engineering - Student ID: 1752 0777
   * Ngô Hà Thế Vĩ  - University of Information Technology - Software Engineering - Student ID: 1752 1255
+  * Phan Anh Tú  - University of Information Technology - Software Engineering - Student ID: 1752 1204
+
 
 
 
