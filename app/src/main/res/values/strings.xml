@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Sleepz</string>
+    <string name="nav_alarm">Alarm</string>
+    <string name="nav_static">Statics</string>
+    <string name="nav_tips">Tips</string>
+</resources>
