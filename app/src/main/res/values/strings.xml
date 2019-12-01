@@ -3,4 +3,5 @@
     <string name="nav_alarm">Alarm</string>
     <string name="nav_static">Statics</string>
     <string name="nav_tips">Tips</string>
+    <string name="btnAlarm">Set your own alarm</string>
 </resources>
