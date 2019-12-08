@@ -4,37 +4,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:weightSum="10"
-    android:orientation="vertical">
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="10">
+
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5">
-    <TimePicker
-        android:id="@+id/alarmTimePicker"
-        style="@android:style/Widget.Material.Light.TimePicker"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/MyDatePickerSpinnerStyle"
-        android:timePickerMode="spinner"
-        tools:targetApi="lollipop" />
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:weightSum="5">
+
+        <TimePicker
+            android:id="@+id/alarmTimePicker"
+            style="@android:style/Widget.Material.Light.TimePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:theme="@style/MyDatePickerSpinnerStyle"
+            android:timePickerMode="spinner"
+            tools:targetApi="lollipop" />
+
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose your song"
+        android:textSize="20dp"
+        android:textColor="@color/colorPrimaryComponent" />
+
+    <Spinner
+        android:id="@+id/spinnerAlarm"
+        android:layout_width="370dp"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/rounded_button"
+        android:contextClickable="true"
+        android:spinnerMode="dropdown"
+        tools:targetApi="lollipop" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="5">
-    <Button
-        android:id="@+id/btnAlarm"
-        style="@style/AlarmButton"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button"
-        android:text="@string/btnAlarm"
-        android:textColor="@color/colorPrimaryComponent"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnAlarm"
+            style="@style/AlarmButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_button"
+            android:text="@string/btnAlarm"
+            android:textColor="@color/colorPrimaryComponent"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
     </FrameLayout>
 </LinearLayout>
