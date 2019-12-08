@@ -10,5 +10,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.e("hello","xin chao");
+        Intent receiveIntent = new Intent(context,Ringtone.class);
+        context.startService(receiveIntent);
     }
 }

@@ -18,6 +18,8 @@
             </intent-filter>
         </activity>
         <receiver android:name=".AlarmReceiver"/>
+        <service android:name=".Ringtone"
+            android:enabled="true"/>
     </application>
 
 </manifest>

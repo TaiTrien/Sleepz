@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,13 +39,15 @@ public class AlarmFragment extends Fragment {
         btnTimeChooser = view.findViewById(R.id.btnAlarm);
         calendar = Calendar.getInstance();
         alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
+        final Intent intent = new Intent(mContext, AlarmReceiver.class);
         timePicker.setIs24HourView(true);
         btnTimeChooser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, AlarmReceiver.class);
                 int hour = timePicker.getHour();
                 int minutes = timePicker.getMinute();
+                calendar.set(Calendar.HOUR_OF_DAY, hour);
+                calendar.set(Calendar.MINUTE, minutes);
                 intent.putExtra("Hour", hour);
                 intent.putExtra("Minutes", minutes);
                 pendingIntent = PendingIntent.getBroadcast(mContext,0,intent,
