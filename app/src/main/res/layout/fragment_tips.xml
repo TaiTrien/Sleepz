@@ -26,7 +26,7 @@
         android:src="@drawable/moon"
         android:contentDescription="Moon" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnPlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
         android:layout_marginTop="20dp"
         android:layout_centerVertical="true"
         />
-    <Button
+    <ImageButton
         android:id="@+id/btnSkipBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         android:layout_marginTop="20dp"
         android:layout_toLeftOf="@+id/btnPlay"
         android:layout_toStartOf="@+id/btnPlay" />
-    <Button
+    <ImageButton
         android:id="@+id/btnSkipNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
 
     <SeekBar
         android:id="@+id/seekbar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Title"
         android:layout_centerHorizontal="true"
