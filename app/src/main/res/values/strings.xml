@@ -4,4 +4,5 @@
     <string name="nav_static">Statics</string>
     <string name="nav_tips">Tips</string>
     <string name="btnAlarm">Set your own alarm</string>
+    <string name="title_song">title song</string>
 </resources>

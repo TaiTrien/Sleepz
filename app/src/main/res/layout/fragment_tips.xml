@@ -6,17 +6,25 @@
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
-    <com.mikhaellopez.circularimageview.CircularImageView
+<!--    <com.mikhaellopez.circularimageview.CircularImageView-->
+<!--        android:id="@+id/iconPlayMusic"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="@android:dimen/thumbnail_height"-->
+<!--        android:src="@drawable/pillow"-->
+<!--        app:civ_border_color="@color/colorPrimaryComponent"-->
+<!--        app:civ_circle_color_start="@color/colorPrimary"-->
+<!--        app:civ_circle_color_end="@color/cardview_shadow_end_color"-->
+<!--            />-->
+    <ImageView
         android:id="@+id/iconPlayMusic"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@android:dimen/thumbnail_height"
-        android:src="@drawable/play_music_icon"
-        app:civ_border_color="@color/colorPrimaryComponent"
-        app:civ_circle_color_start="@color/colorPrimary"
-        app:civ_circle_color_end="@color/cardview_shadow_end_color"
-            />
+        android:src="@drawable/moon"
+        android:contentDescription="Moon" />
 
     <Button
         android:id="@+id/btnPlay"
@@ -35,7 +43,8 @@
         android:background="@drawable/ic_skip"
         android:layout_below="@+id/seekbar"
         android:layout_marginTop="20dp"
-        android:layout_toLeftOf="@+id/btnPlay" />
+        android:layout_toLeftOf="@+id/btnPlay"
+        android:layout_toStartOf="@+id/btnPlay" />
     <Button
         android:id="@+id/btnSkipNext"
         android:layout_width="wrap_content"
@@ -43,7 +52,8 @@
         android:background="@drawable/ic_skip_next"
         android:layout_below="@+id/seekbar"
         android:layout_marginTop="20dp"
-        android:layout_toRightOf="@+id/btnPlay"/>
+        android:layout_toRightOf="@+id/btnPlay"
+        android:layout_toEndOf="@+id/btnPlay" />
 
     <SeekBar
         android:id="@+id/seekbar"
@@ -60,7 +70,8 @@
         android:layout_toLeftOf="@id/btnSkipBack"
         android:text="00:00"
         android:textColor="@color/colorPrimaryComponent"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:layout_toStartOf="@id/btnSkipBack" />
     <TextView
         android:id="@+id/timeTotal"
         android:layout_width="wrap_content"
@@ -69,14 +80,15 @@
         android:layout_toRightOf="@id/btnSkipNext"
         android:text="01:00"
         android:textColor="@color/colorPrimaryComponent"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:layout_toEndOf="@id/btnSkipNext" />
     <TextView
         android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/iconPlayMusic"
         android:layout_centerHorizontal="true"
-        android:text="title song"
+        android:text="@string/title_song"
         android:layout_marginTop="20dp"
         android:textColor="@color/colorPrimaryComponent"
         android:textSize="25sp"/>
