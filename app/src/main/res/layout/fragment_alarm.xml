@@ -40,10 +40,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:background="@drawable/rounded_button"
         android:contextClickable="true"
+        
         android:spinnerMode="dropdown"
         tools:targetApi="lollipop" />
+
 
     <FrameLayout
         android:layout_width="match_parent"
