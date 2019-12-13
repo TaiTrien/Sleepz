@@ -2,95 +2,95 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
-<!--    <com.mikhaellopez.circularimageview.CircularImageView-->
-<!--        android:id="@+id/iconPlayMusic"-->
-<!--        android:layout_width="200dp"-->
-<!--        android:layout_height="200dp"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_marginTop="@android:dimen/thumbnail_height"-->
-<!--        android:src="@drawable/pillow"-->
-<!--        app:civ_border_color="@color/colorPrimaryComponent"-->
-<!--        app:civ_circle_color_start="@color/colorPrimary"-->
-<!--        app:civ_circle_color_end="@color/cardview_shadow_end_color"-->
-<!--            />-->
     <ImageView
         android:id="@+id/iconPlayMusic"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_above="@+id/Title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@android:dimen/thumbnail_height"
-        android:src="@drawable/moon"
-        android:contentDescription="Moon" />
+        android:contentDescription="Moon"
+        android:src="@drawable/moon" />
 
-    <ImageButton
-        android:id="@+id/btnPlay"
+    <TextView
+        android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/ic_play"
-        android:layout_below="@+id/seekbar"
+        android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
-        android:layout_centerVertical="true"
-        />
-    <ImageButton
-        android:id="@+id/btnSkipBack"
-        android:layout_width="wrap_content"
+        android:text="@string/title_song"
+        android:textColor="@color/colorPrimaryComponent"
+        android:textSize="30sp" />
+
+    <RelativeLayout
+        android:id="@+id/TimeDuration"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_skip"
-        android:layout_below="@+id/seekbar"
-        android:layout_marginTop="20dp"
-        android:layout_toLeftOf="@+id/btnPlay"
-        android:layout_toStartOf="@+id/btnPlay" />
-    <ImageButton
-        android:id="@+id/btnSkipNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_skip_next"
-        android:layout_below="@+id/seekbar"
-        android:layout_marginTop="20dp"
-        android:layout_toRightOf="@+id/btnPlay"
-        android:layout_toEndOf="@+id/btnPlay" />
+        android:layout_below="@+id/Title">
+
+        <TextView
+            android:id="@+id/timeSong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:text="00:00"
+            android:textColor="@color/colorPrimaryComponent"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/timeTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:text="01:00"
+            android:textColor="@color/colorPrimaryComponent"
+            android:textSize="25sp" />
+    </RelativeLayout>
 
     <SeekBar
         android:id="@+id/seekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Title"
+        android:layout_below="@+id/TimeDuration"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
-    <TextView
-        android:id="@+id/timeSong"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="7dp" />
+
+
+    <RelativeLayout
+        android:id="@+id/btnBoard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/btnSkipBack"
-        android:layout_toLeftOf="@id/btnSkipBack"
-        android:text="00:00"
-        android:textColor="@color/colorPrimaryComponent"
-        android:textSize="25sp"
-        android:layout_toStartOf="@id/btnSkipBack" />
-    <TextView
-        android:id="@+id/timeTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/btnSkipBack"
-        android:layout_toRightOf="@id/btnSkipNext"
-        android:text="01:00"
-        android:textColor="@color/colorPrimaryComponent"
-        android:textSize="25sp"
-        android:layout_toEndOf="@id/btnSkipNext" />
-    <TextView
-        android:id="@+id/Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/iconPlayMusic"
+        android:layout_below="@+id/seekbar"
         android:layout_centerHorizontal="true"
-        android:text="@string/title_song"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/colorPrimaryComponent"
-        android:textSize="25sp"/>
+        android:layout_marginTop="20dp">
+
+        <ImageButton
+            android:id="@+id/btnPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/ic_play" />
+
+        <ImageButton
+            android:id="@+id/btnSkipBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/btnPlay"
+            android:background="@drawable/ic_skip" />
+
+        <ImageButton
+            android:id="@+id/btnSkipNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/btnPlay"
+            android:background="@drawable/ic_skip_next" />
+    </RelativeLayout>
+
 
 </RelativeLayout>
