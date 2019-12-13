@@ -6,7 +6,11 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -19,11 +23,13 @@ import java.util.ArrayList;
 
 public class TipsFragment extends Fragment implements View.OnClickListener {
     ImageButton play, skipBack, skipNext;
+    ImageView imageView;
     MediaPlayer mediaPlayer;
     TextView txtTitle, txtTimeSong, txtTimeTotal;
     SeekBar seekBar;
     ArrayList<TipMusic> arraySong;
-    int position = 0;
+    int position=0;
+    Animation animationStart, animationStop;
 
     @Nullable
     @Override
@@ -48,6 +54,8 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
         //seekbar
         seekBar = view.findViewById(R.id.seekbar);
 
+        //image
+        imageView = (ImageView) view.findViewById(R.id.iconPlayMusic);
 
         play.setOnClickListener(this);
         skipNext.setOnClickListener(this);
@@ -58,7 +66,8 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
 
         khoiTaoMedia();
 
-
+        animationStart = AnimationUtils.loadAnimation(getActivity(), R.anim.animation_picture);
+        animationStop =  AnimationUtils.loadAnimation(getActivity(), R.anim.animation_stop);
     }
 
     // update time cho file text
@@ -128,12 +137,16 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        switch (v.getId()){
+
+//nut play
             case R.id.btnPlay:
-                if (mediaPlayer.isPlaying()) {
+                if(mediaPlayer.isPlaying()){
+                    imageView.startAnimation(animationStop);
                     mediaPlayer.pause();
-                    play.setBackgroundResource(R.drawable.ic_play);
-                } else if (!mediaPlayer.isPlaying()) {
+                    play.setImageResource(R.drawable.ic_play);
+                }else if(!mediaPlayer.isPlaying()){
+                    imageView.startAnimation(animationStart);
                     mediaPlayer.start();
                     play.setBackgroundResource(R.drawable.ic_pause_black_24dp);
                 }
@@ -166,6 +179,7 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
                 break;
 
 
+//nut next
             case R.id.btnSkipNext:
                 position++;
                 if (position > arraySong.size() - 1) {
@@ -180,11 +194,13 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
 
                 //set text timetotal
                 setTimeTotal();
-
+                imageView.startAnimation(animationStart);
                 //update time
                 updateTimeSong();
                 break;
-            case R.id.btnSkipBack:
+
+//nut back
+            case  R.id.btnSkipBack:
                 position--;
                 if (position < 0) {
                     position = arraySong.size() - 1;
@@ -198,7 +214,7 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
 
                 //set text timetotal
                 setTimeTotal();
-
+                imageView.startAnimation(animationStart);
                 //update time
                 updateTimeSong();
                 break;
