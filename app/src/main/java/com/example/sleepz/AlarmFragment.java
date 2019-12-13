@@ -45,6 +45,7 @@ public class AlarmFragment extends Fragment {
     ArrayList<String> arraySong;
     ArrayAdapter<String> arrayAdapter;
     String selectedSong = null; // title of song which is selected
+    Toast alarmNoti; // Toast to notify user know success or not
     private Context mContext;
 
     @Nullable
@@ -76,8 +77,21 @@ public class AlarmFragment extends Fragment {
                 setMusicPath(selectedSong,intent);
                 pendingIntent = PendingIntent.getBroadcast(mContext, 0, intent,
                         PendingIntent.FLAG_UPDATE_CURRENT);
-                alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+               try {
+                   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                       alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                   else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+                       alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                   else
+                       alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
 
+                   alarmNoti = Toast.makeText(mContext, "Set alarm successfully", Toast.LENGTH_LONG * 2);
+                   alarmNoti.show();
+               }
+               catch (Exception e) {
+                   alarmNoti = Toast.makeText(mContext, "Set alarm failed", Toast.LENGTH_LONG * 2);
+                   alarmNoti.show();
+               }
 
             }
         });
