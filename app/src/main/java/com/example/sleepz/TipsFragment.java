@@ -1,11 +1,13 @@
 package com.example.sleepz;
 
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -16,7 +18,7 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 
 public class TipsFragment extends Fragment  implements View.OnClickListener{
-    Button play, skipBack, skipNext;
+    ImageButton play, skipBack, skipNext;
     MediaPlayer mediaPlayer;
     TextView txtTitle, txtTimeSong, txtTimeTotal;
     SeekBar seekBar;
@@ -34,9 +36,9 @@ public class TipsFragment extends Fragment  implements View.OnClickListener{
         super.onViewCreated(view, savedInstanceState);
 
         //button
-        play = (Button) view.findViewById(R.id.btnPlay);
-        skipBack = (Button) view.findViewById(R.id.btnSkipBack);
-        skipNext = (Button) view.findViewById(R.id.btnSkipNext);
+        play = (ImageButton) view.findViewById(R.id.btnPlay);
+        skipBack = (ImageButton) view.findViewById(R.id.btnSkipBack);
+        skipNext = (ImageButton) view.findViewById(R.id.btnSkipNext);
 
         //set time text view and title
         txtTimeSong = (TextView) view.findViewById(R.id.timeSong);
@@ -54,7 +56,14 @@ public class TipsFragment extends Fragment  implements View.OnClickListener{
 
         addSong();
 
+        khoiTaoMedia();
 
+
+    }
+
+    private void khoiTaoMedia() {
+        mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(),arraySong.get(position).getFile());
+        txtTitle.setText(arraySong.get(position).getTitle());
     }
 
     private void addSong() {
@@ -72,16 +81,41 @@ public class TipsFragment extends Fragment  implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnPlay:
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(),arraySong.get(position).getFile());
+                if(mediaPlayer.isPlaying()){
+                    mediaPlayer.pause();
+                    play.setImageResource(R.drawable.ic_play);
+                }else if(!mediaPlayer.isPlaying()){
+                    mediaPlayer.start();
+                    play.setImageResource(R.drawable.ic_pause_black_24dp);
+                }
+                break;
+
+
+            case R.id.btnSkipNext:
+                position++;
+                if(position > arraySong.size() -1){
+                    position = 0;
+                }
+                if(mediaPlayer.isPlaying()){
+                    mediaPlayer.stop();
+                }
+                khoiTaoMedia();
                 mediaPlayer.start();
-                mediaPlayer.isPlaying();
-                break;
-
-
-            case R.id.btnSkipBack:
+                play.setImageResource(R.drawable.ic_pause_black_24dp);
 
                 break;
-            case  R.id.btnSkipNext:
+            case  R.id.btnSkipBack:
+                position--;
+                if(position < 0){
+                    position = arraySong.size() -1;
+                }
+                if(mediaPlayer.isPlaying()){
+                    mediaPlayer.stop();
+                }
+                khoiTaoMedia();
+                mediaPlayer.start();
+                play.setImageResource(R.drawable.ic_pause_black_24dp);
+
                 break;
         }
 
