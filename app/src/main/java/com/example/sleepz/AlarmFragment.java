@@ -2,14 +2,18 @@ package com.example.sleepz;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -62,10 +66,12 @@ public class AlarmFragment extends Fragment {
 
 
     }
+    //
     public void doStuff() {
         spinnerMusic = getView().findViewById(R.id.spinnerAlarm);
         arraySong = new ArrayList<>();
         getMusic();
+
         arrayAdapter = new ArrayAdapter(getActivity(), R.layout.custom_spinner, arraySong);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMusic.setAdapter(arrayAdapter);
@@ -120,4 +126,6 @@ public class AlarmFragment extends Fragment {
             }
         }
     }
+
+
 }
