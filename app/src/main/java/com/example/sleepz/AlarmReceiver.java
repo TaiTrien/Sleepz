@@ -1,5 +1,6 @@
 package com.example.sleepz;
 
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,5 +14,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Intent receiveIntent = new Intent(context,Ringtone.class);
         receiveIntent.putExtra("pathMusic", intent.getExtras().getString("pathMusic"));
         context.startService(receiveIntent);
+        NotificationManager notificationManage = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManage.cancelAll();
     }
 }
