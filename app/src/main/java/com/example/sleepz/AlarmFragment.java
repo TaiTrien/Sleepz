@@ -76,9 +76,8 @@ public class AlarmFragment extends Fragment {
                 setMusicPath(selectedSong,intent);
                 pendingIntent = PendingIntent.getBroadcast(mContext, 0, intent,
                         PendingIntent.FLAG_UPDATE_CURRENT);
-                alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-
-
+                //alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),60*60*1000+30*60*1000, pendingIntent);
             }
         });
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
