@@ -33,8 +33,8 @@ public class Ringtone extends Service {
         createNotificationChannel();
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,0);
-        Intent sleepintent = new Intent(this,AlarmReceiver.class);
-        PendingIntent sleeppendingintent = PendingIntent.getActivity(this, 0,sleepintent,PendingIntent.FLAG_ONE_SHOT);
+        Intent sleepintent = new Intent(this,MyReceiver.class);
+        PendingIntent sleeppendingintent = PendingIntent.getBroadcast(this, 0,sleepintent,PendingIntent.FLAG_ONE_SHOT);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,CHANNEL_ID)
                 .setSmallIcon(R.drawable.icon_noiti)
                 .setContentTitle("title")
