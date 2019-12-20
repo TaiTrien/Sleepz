@@ -7,12 +7,14 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
+
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 public class Ringtone extends Service {
-    MediaPlayer ringtone;
+    private static final String CHANNEL_ID = "2298";
+    public int notificationId = 0;
     @Nullable
     @Override
     public IBinder onBind(Intent intent) { return null; }
@@ -33,18 +35,23 @@ public class Ringtone extends Service {
         createNotificationChannel();
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,0);
-        Intent sleepintent = new Intent(this,MyReceiver.class);
-        PendingIntent sleeppendingintent = PendingIntent.getBroadcast(this, 0,sleepintent,PendingIntent.FLAG_ONE_SHOT);
+        Intent Sintent = new Intent(this,SLEEP.class);
+        Intent Wintent = new Intent(this,WAKE.class);
+        Sintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        Wintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent Spending = PendingIntent.getBroadcast(this, 0,Sintent,0);
+        PendingIntent Wpending = PendingIntent.getBroadcast(this, 0,Wintent,0);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,CHANNEL_ID)
                 .setSmallIcon(R.drawable.icon_noiti)
-                .setContentTitle("title")
-                .setContentText("textContent")
+                .setContentTitle("Sleeping")
+                .setContentText("Good time to sleep !")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 //.setTimeoutAfter(3000)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .addAction(R.drawable.icon_noiti, "DISMISS",sleeppendingintent);
+                .addAction(R.drawable.icon_noiti,"SLEEPING",Spending)
+                .addAction(R.drawable.icon_noiti,"WAKED",Wpending);
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         int notificationId = 0;
         notificationManager.notify(notificationId, mBuilder.build());
