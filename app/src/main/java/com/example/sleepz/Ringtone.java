@@ -23,6 +23,7 @@ public class Ringtone extends Service {
         Uri uriMusic = Uri.parse(intent.getStringExtra("pathMusic"));
         Intent intentRingTone = new Intent(this, AlarmLayout.class);
         intentRingTone.putExtra("pathMusic",intent.getExtras().getString("pathMusic"));
+        intentRingTone.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         this.startActivity(intentRingTone);
         return START_NOT_STICKY;
     }
