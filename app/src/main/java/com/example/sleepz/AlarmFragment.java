@@ -69,6 +69,7 @@ public class AlarmFragment extends Fragment {
         final Intent intent = new Intent(mContext, AlarmReceiver.class);
         timePicker.setIs24HourView(true);
         btnTimeChooser.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
                 int hour = timePicker.getHour();
