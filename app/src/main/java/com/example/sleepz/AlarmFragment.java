@@ -12,6 +12,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.view.Display;
 import android.util.Log;
@@ -74,6 +75,13 @@ public class AlarmFragment extends Fragment {
             public void onClick(View view) {
                 int hour = timePicker.getHour();
                 int minutes = timePicker.getMinute();
+                if (calendar.get(Calendar.HOUR_OF_DAY) > hour || calendar.get(Calendar.MINUTE) > minutes)
+                {
+                    calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 1 );
+                }
+                else
+                calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH));
+
                 calendar.set(Calendar.HOUR_OF_DAY, hour);
                 calendar.set(Calendar.MINUTE, minutes);
                 intent.putExtra("Hour", hour);
