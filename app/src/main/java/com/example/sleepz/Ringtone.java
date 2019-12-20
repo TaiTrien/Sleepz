@@ -21,8 +21,10 @@ public class Ringtone extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Uri uriMusic = Uri.parse(intent.getStringExtra("pathMusic"));
-        ringtone = MediaPlayer.create(this, uriMusic);
-        ringtone.start();
+        Intent intentRingTone = new Intent(this, AlarmLayout.class);
+        intentRingTone.putExtra("pathMusic",intent.getExtras().getString("pathMusic"));
+        this.startActivity(intentRingTone);
         return START_NOT_STICKY;
     }
+
 }

@@ -13,5 +13,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Intent receiveIntent = new Intent(context,Ringtone.class);
         receiveIntent.putExtra("pathMusic", intent.getExtras().getString("pathMusic"));
         context.startService(receiveIntent);
+        Intent myIntent = new Intent(context,AlarmLayout.class);
+        context.startActivity(myIntent);
     }
 }
