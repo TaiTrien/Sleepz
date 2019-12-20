@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -28,18 +27,25 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
     TextView txtTitle, txtTimeSong, txtTimeTotal;
     SeekBar seekBar;
     ArrayList<TipMusic> arraySong;
-    int position=0;
+    int position = 0;
     Animation animationStart, animationStop;
+    SimpleDateFormat dinhDangGio = new SimpleDateFormat("mm:ss");
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+       if (savedInstanceState!=null){
+          mediaPlayer.seekTo(savedInstanceState.getInt("TimeSong"));
+
+       }
+
         return inflater.inflate(R.layout.fragment_tips, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
         //button
         play = view.findViewById(R.id.btnPlay);
@@ -55,7 +61,7 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
         seekBar = view.findViewById(R.id.seekbar);
 
         //image
-        imageView = (ImageView) view.findViewById(R.id.iconPlayMusic);
+        imageView = view.findViewById(R.id.iconPlayMusic);
 
         play.setOnClickListener(this);
         skipNext.setOnClickListener(this);
@@ -67,7 +73,7 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
         khoiTaoMedia();
 
         animationStart = AnimationUtils.loadAnimation(getActivity(), R.anim.animation_picture);
-        animationStop =  AnimationUtils.loadAnimation(getActivity(), R.anim.animation_stop);
+        animationStop = AnimationUtils.loadAnimation(getActivity(), R.anim.animation_stop);
     }
 
     // update time cho file text
@@ -76,7 +82,6 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                SimpleDateFormat dinhDangGio = new SimpleDateFormat("mm:ss");
                 txtTimeSong.setText(dinhDangGio.format(mediaPlayer.getCurrentPosition()));
 
                 //tu nhay bai
@@ -112,7 +117,6 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
 
     //set thoi gian bai hat
     private void setTimeTotal() {
-        SimpleDateFormat dinhDangGio = new SimpleDateFormat("mm:ss");
         txtTimeTotal.setText(dinhDangGio.format(mediaPlayer.getDuration()));
         seekBar.setMax(mediaPlayer.getDuration());
     }
@@ -137,15 +141,15 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
 //nut play
             case R.id.btnPlay:
-                if(mediaPlayer.isPlaying()){
+                if (mediaPlayer.isPlaying()) {
                     imageView.startAnimation(animationStop);
                     mediaPlayer.pause();
-                    play.setImageResource(R.drawable.ic_play);
-                }else if(!mediaPlayer.isPlaying()){
+                    play.setBackgroundResource(R.drawable.ic_play);
+                } else if (!mediaPlayer.isPlaying()) {
                     imageView.startAnimation(animationStart);
                     mediaPlayer.start();
                     play.setBackgroundResource(R.drawable.ic_pause_black_24dp);
@@ -200,7 +204,7 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
                 break;
 
 //nut back
-            case  R.id.btnSkipBack:
+            case R.id.btnSkipBack:
                 position--;
                 if (position < 0) {
                     position = arraySong.size() - 1;
@@ -220,5 +224,12 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
                 break;
         }
 
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("TimeSong", mediaPlayer.getCurrentPosition());
+        outState.putBoolean("isPlayerPlaying", mediaPlayer.isPlaying());
     }
 }
