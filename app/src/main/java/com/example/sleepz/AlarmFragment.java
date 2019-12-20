@@ -35,6 +35,7 @@ import java.util.Calendar;
 
 public class AlarmFragment extends Fragment {
     private static final int MY_PERMISSION_REQUEST = 1;
+    private static final int TIME_CYCLE = 5,400,000;
     TimePicker timePicker;
     Button btnTimeChooser;// btn to choose time and set alarm
     Calendar calendar;
