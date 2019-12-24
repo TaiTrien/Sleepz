@@ -1,5 +1,6 @@
 package com.example.sleepz;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -30,6 +32,7 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
     int position = 0;
     Animation animationStart, animationStop;
     SimpleDateFormat dinhDangGio = new SimpleDateFormat("mm:ss");
+    Button btnSwipUp;
 
     @Nullable
     @Override
@@ -67,6 +70,15 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
         skipNext.setOnClickListener(this);
         skipBack.setOnClickListener(this);
 
+        //button swip up
+        btnSwipUp = (Button) view.findViewById(R.id.btn_Swip_up);
+        btnSwipUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               startTips(); // to open tips activity
+            }
+        });
+
 
         addSong();
 
@@ -76,6 +88,10 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
         animationStop = AnimationUtils.loadAnimation(getActivity(), R.anim.animation_stop);
     }
 
+    public void startTips(){
+        Intent openIntent = new Intent(this.getContext(), tips_content_activity.class);
+        startActivity(openIntent);
+    }
     // update time cho file text
     private void updateTimeSong() {
         final Handler handler = new Handler();

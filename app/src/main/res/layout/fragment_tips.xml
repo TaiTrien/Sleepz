@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/background"
+
     android:orientation="vertical">
 
     <ImageView
@@ -90,7 +91,15 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/btnPlay"
             android:background="@drawable/ic_skip_next" />
-    </RelativeLayout>
+    </RelativeLayout> //button board
 
+    <Button
+        android:id="@+id/btn_Swip_up"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/ic_keyboard_arrow_up_black_24dp"
+        android:onClick="onSwipUpBtn" />
 
 </RelativeLayout>

@@ -6,6 +6,7 @@
     <color name="colorPrimaryComponent">#5F9EF5</color>
     <color name="colorSecondaryComponent">#616163</color>
     <color name="title_color">#fff</color>
-
+    <color name="black">#000</color>
+    <color name="transpanrentWhite">#B8B3B3</color>
 
 </resources>

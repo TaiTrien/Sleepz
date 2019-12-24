@@ -10,10 +10,15 @@
     <style name="MyDatePickerSpinnerStyle" parent="@android:style/Widget.Material.DatePicker" tools:targetApi="21">
         <item name="android:datePickerMode">spinner</item>
         <item name="android:calendarViewShown">true</item>
-        <item name="colorControlNormal">@android:color/transparent </item>
+        <item name="colorControlNormal">@android:color/transparent</item>
         <item name="android:textColorPrimary">@color/title_color</item>
         <item name="android:textSize">45sp</item>
 
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AlarmButton" parent="android:Widget.Button">
