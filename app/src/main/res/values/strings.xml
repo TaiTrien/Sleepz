@@ -7,4 +7,6 @@
     <string name="title_song">title song</string>
     <string name="moon">Moon</string>
     <string name="sheep">Sheep</string>
+    <string name="channel_name">NameChannel</string>
+    <string name="channel_description">DescName</string>
 </resources>
