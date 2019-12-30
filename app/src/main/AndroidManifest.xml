@@ -13,6 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <service
+            android:name=".Noti"
+            android:enabled="true"
+            android:exported="true"/>
+
+        <receiver
+            android:name=".WAKE"
+            android:enabled="true"
+            android:exported="true" />
+        <receiver
+            android:name=".SLEEP"
+            android:enabled="true"
+            android:exported="true" />
+        
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
