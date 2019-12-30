@@ -52,7 +52,7 @@ public class AlarmFragment extends Fragment {
     String selectedSong = null; // title of song which is selected
     Toast alarmNoti; // Toast to notify user know success or not
     private Context mContext;
-
+    private Context nContext;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,6 +64,7 @@ public class AlarmFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mContext = this.getContext();
+        nContext = this.getContext();
         timePicker = view.findViewById(R.id.alarmTimePicker);
         btnTimeChooser = view.findViewById(R.id.btnAlarm);
         calendar = Calendar.getInstance();
@@ -90,8 +91,22 @@ public class AlarmFragment extends Fragment {
                 setMusicPath(selectedSong,intent);
                 pendingIntent = PendingIntent.getBroadcast(mContext, 0, intent,
                         PendingIntent.FLAG_UPDATE_CURRENT);
-                //alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),60*60*1000+30*60*1000, pendingIntent);
+                alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+                Intent Notiintent = new Intent(nContext,Noti.class);
+                PendingIntent Pintent = PendingIntent.getService(nContext,0,Notiintent,PendingIntent.FLAG_UPDATE_CURRENT);
+                Long Time = System.currentTimeMillis();
+                Long Stime=calendar.getTimeInMillis();
+                //tinh time khoa hoc
+                while(Stime> Time)
+                {
+                    if((Stime-5400000)>Time)
+                      Stime=Stime-5400000;
+                    else
+                        break;
+                }
+                AlarmManager alarmManager = (AlarmManager) nContext.getSystemService(Context.ALARM_SERVICE);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,Stime,TIME_CYCLE,Pintent);
+                
                try {
                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
