@@ -9,25 +9,16 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 public class SLEEP extends BroadcastReceiver {
-
+    //lay thoi gian khi bam nut va chuyen qua string de luu vao database
+    Long gettime=System.currentTimeMillis();
+    String currenttime=Long.toString(gettime);
     @Override
     public void onReceive(Context context, Intent intent) {
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
+        //tắt noti khi bấm vào nút
         NotificationManager notificationManager =(NotificationManager) context.getSystemService((Context.NOTIFICATION_SERVICE));
         notificationManager.cancelAll();
     }
-    public void create(String sleeptime, String waketime) {
-        database db = new database(null,null,null,1);
-        db.create(sleeptime,waketime);
-        TIMESLEEP time = new TIMESLEEP();
-        time.setSleeptime(sleeptime);
-        time.setWaketime(waketime);
-    }
-    public void savetime()
-    {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Calendar cal = Calendar.getInstance();
-        create(dateFormat.format(cal),null);
-    }
+    
 }
