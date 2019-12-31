@@ -36,7 +36,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".AlarmLayout"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:showOnLockScreen="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
