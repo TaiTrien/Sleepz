@@ -23,24 +23,24 @@ public class SleepManager extends SQLiteOpenHelper {
     private static final String WAKE_TIME = "wake_time";
     private static final int VERSION = 1;
 
-    private String SQLquery = "CREATE TABLE " + TABLE_NAME + " (" +
-            SLEEP_TIME + " TEXT, " +
-            WAKE_TIME + " TEXT)";
-
     public SleepManager(@Nullable Context context) {
         super(context, DATABASE_NAME, null, VERSION);
-        Log.d(TAG,"SleepManager: ");
+        //Log.d(TAG,"SleepManager: ");
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(SQLquery);
-        Log.d(TAG,"onCreate: ");
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_NAME + " (" +
+                SLEEP_TIME + " TEXT, " +
+                WAKE_TIME + " TEXT)");
+        //Log.d(TAG,"onCreate: ");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        Log.d(TAG,"onUpgrade: ");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        onCreate(sqLiteDatabase);
+        //Log.d(TAG,"onUpgrade: ");
     }
 
     public void addTime(Sleepy sleepy){
@@ -51,13 +51,13 @@ public class SleepManager extends SQLiteOpenHelper {
 
         sqLiteDatabase.insert(TABLE_NAME,null,contentValues);
         sqLiteDatabase.close();
-        Log.d(TAG,"addTime Successfully");
+        //Log.d(TAG,"addTime Successfully");
     }
 
     public int updateTime(Sleepy sleepy){
         SQLiteDatabase sqLiteDatabase1 = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(WAKE_TIME,sleepy.getWakeTime());
-        return sqLiteDatabase1.update(TABLE_NAME,contentValues,"WAKE_TIME = "+sleepy.getWakeTime(),null);
+        return sqLiteDatabase1.update(TABLE_NAME,contentValues,"SLEEP_TIME = " + sleepy.getSleepTime(),null);
     }
 }
