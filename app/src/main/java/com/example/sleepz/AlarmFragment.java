@@ -26,6 +26,9 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.sleepz.DBManager.SleepManager;
+import com.example.sleepz.model.Sleepy;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -33,11 +36,15 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class AlarmFragment extends Fragment {
     private static final int MY_PERMISSION_REQUEST = 1;
+    private static final String TIME_FORMAT_24 = "HH:mm";
     TimePicker timePicker;
     Button btnTimeChooser;// btn to choose time and set alarm
     Calendar calendar;
@@ -49,6 +56,7 @@ public class AlarmFragment extends Fragment {
     ArrayAdapter<String> arrayAdapter;
     String selectedSong = null; // title of song which is selected
     Toast alarmNoti; // Toast to notify user know success or not
+
     private Context mContext;
 
     @Nullable
@@ -61,12 +69,16 @@ public class AlarmFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         mContext = this.getContext();
         timePicker = view.findViewById(R.id.alarmTimePicker);
         btnTimeChooser = view.findViewById(R.id.btnAlarm);
         calendar = Calendar.getInstance();
         alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
         final Intent intent = new Intent(mContext, AlarmReceiver.class);
+
+        final SleepManager sleepManager = new SleepManager(mContext);
+
         timePicker.setIs24HourView(true);
         btnTimeChooser.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -81,6 +93,11 @@ public class AlarmFragment extends Fragment {
                 setMusicPath(selectedSong,intent);
                 pendingIntent = PendingIntent.getBroadcast(mContext, 0, intent,
                         PendingIntent.FLAG_UPDATE_CURRENT);
+
+                Sleepy sleepy = createTime();
+                if(sleepy!=null) {
+                    sleepManager.addTime(sleepy);
+                }
                try {
                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
@@ -197,6 +214,16 @@ public class AlarmFragment extends Fragment {
             }
         }
     }
+    private Sleepy createTime(){
+        String sleepTime = getTime24String();
+        String wakeTime = "";
+        Sleepy sleepy = new Sleepy(sleepTime,wakeTime);
+        return sleepy;
+    }
 
-
+    public static String getTime24String(){
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat format = new SimpleDateFormat(TIME_FORMAT_24);
+        return format.format(date);
+    }
 }

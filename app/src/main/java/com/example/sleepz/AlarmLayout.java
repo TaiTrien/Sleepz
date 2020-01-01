@@ -1,6 +1,7 @@
 package com.example.sleepz;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -9,6 +10,9 @@ import android.os.IBinder;
 import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Switch;
+
+import com.example.sleepz.DBManager.SleepManager;
+import com.example.sleepz.model.Sleepy;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +27,6 @@ public class AlarmLayout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
         switchStop = findViewById(R.id.switchStop);
-
         //getExtra();
     }
 

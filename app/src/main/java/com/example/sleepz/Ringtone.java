@@ -19,6 +19,11 @@ public class Ringtone extends Service {
     }
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Uri uriMusic = Uri.parse(intent.getStringExtra("pathMusic"));
         Intent intentRingTone = new Intent(this, AlarmLayout.class);
@@ -28,4 +33,8 @@ public class Ringtone extends Service {
         return START_NOT_STICKY;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }
