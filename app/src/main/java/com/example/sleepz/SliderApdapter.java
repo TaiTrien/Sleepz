@@ -34,9 +34,16 @@ public class SliderApdapter extends PagerAdapter {
     };
     // arrays descriptions
     public String [] slide_desc = {
-            "orem Ipsum is simply dummy text of the printing and typesetting industry",
-            "orem Ipsum is simply dummy text of the printing and typesetting industry",
-            "orem Ipsum is simply dummy text of the printing and typesetting industry"
+            "Your stomach will let your brain know when it is at it’s maximum capacity by sending signals that say “That’s it!” with a bloat sensation. If you continue to eat you will get a major stomach ache. If you go farther then that… I would assume it would be excruciating as your stomach expands past it’s limit.",
+            "Staying up late could be harmful to your health: " +
+                    "Linking to high blood sugar; " +
+                    "Leading to poor eating habits; " +
+                    "Linking to heart disease; " +
+                    "Making you sick; " +
+                    "Linking to depression; " +
+                    "Affecting the amount of sleep you end up getting at night; " +
+                    "If you're staying up to study, you're probably not retaining information.",
+            "Programmers often work at night because the brain doesn't tend to look around for distractions, the light of a computer screen makes them more alert and because they don't want to be forced to time. Still know that night work will focus and be more effective. However, in the long run, it will have a significant impact on health. So no matter how quiet the work, coders should spend a few hours to rest."
     };
     @Override
     public int getCount() {

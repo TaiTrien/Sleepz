@@ -4,27 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:gravity="center">
+    >
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="It's time to wake up"
-        android:textSize="36sp"
+        android:textSize="40sp"
         android:textColor="@color/title_color"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerInParent="true"/>
 
     <Switch
         android:id="@+id/swtStop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:scrollbarSize="30sp"
+        android:scrollbarSize="40sp"
         android:text="Yes "
         android:textColor="@color/transpanrentWhite"
         android:textCursorDrawable="@color/colorSecondaryComponent"
-        android:textSize="25sp" />
+        android:textSize="40sp"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
