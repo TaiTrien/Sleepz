@@ -10,13 +10,15 @@ import android.os.PersistableBundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AlarmLayout extends AppCompatActivity {
-    Switch switchStop;
+    Switch swtStop;
     MediaPlayer ringtone;
     Intent intentAlarm;
 
@@ -24,14 +26,13 @@ public class AlarmLayout extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
-        switchStop = findViewById(R.id.switchStop);
+        swtStop = findViewById(R.id.swtStop);
         Window window = getWindow();
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON|
                 WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD|
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
-        //getExtra();
     }
 
     @Override
@@ -40,18 +41,34 @@ public class AlarmLayout extends AppCompatActivity {
         getExtra();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     public void getExtra(){
         intentAlarm = getIntent();
         Uri uriMusic = Uri.parse(intentAlarm.getStringExtra("pathMusic"));
         ringtone = MediaPlayer.create(this,uriMusic);
         ringtone.start();
-        switchStop.setOnClickListener(new View.OnClickListener() {
+        swtStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ringtone.stop();
                 ringtone.release();
+                finish();
             }
         });
     }
+
 
 }

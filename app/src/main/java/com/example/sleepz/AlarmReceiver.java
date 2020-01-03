@@ -13,8 +13,5 @@ public class AlarmReceiver extends BroadcastReceiver {
         Intent receiveIntent = new Intent(context,Ringtone.class);
         receiveIntent.putExtra("pathMusic", intent.getExtras().getString("pathMusic"));
         context.startService(receiveIntent);
-        Intent myIntent = new Intent(context,AlarmLayout.class);
-        myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(myIntent);
     }
 }
