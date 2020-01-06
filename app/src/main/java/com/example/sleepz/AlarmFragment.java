@@ -104,8 +104,8 @@ public class AlarmFragment extends Fragment {
                     else
                         break;
                 }
-                AlarmManager alarmManager = (AlarmManager) nContext.getSystemService(Context.ALARM_SERVICE);
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,Stime,TIME_CYCLE,Pintent);
+                //AlarmManager alarmManager = (AlarmManager) nContext.getSystemService(Context.ALARM_SERVICE);
+                //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,Stime,TIME_CYCLE,Pintent);
                 
                try {
                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)

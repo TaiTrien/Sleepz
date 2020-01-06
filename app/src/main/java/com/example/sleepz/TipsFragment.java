@@ -158,11 +158,7 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
         arraySong.add(new TipMusic("Bài 1", R.raw.chucbengungon));
         arraySong.add(new TipMusic("Bài 2", R.raw.themoon));
         arraySong.add(new TipMusic("Bài 3", R.raw.muavanuocmat));
-        arraySong.add(new TipMusic("Bài 4", R.raw.bensounderf));
-        arraySong.add(new TipMusic("Bài 5", R.raw.bensoundmemories));
-        arraySong.add(new TipMusic("Bài 6", R.raw.bensoundonceagain));
-        arraySong.add(new TipMusic("Bài 7", R.raw.bensoundsummer));
-    }
+   }
 
     @Override
     public void onClick(View v) {

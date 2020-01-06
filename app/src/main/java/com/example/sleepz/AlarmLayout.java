@@ -1,20 +1,16 @@
 package com.example.sleepz;
 
-import android.app.Service;
+import android.app.KeyguardManager;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -36,21 +32,21 @@ public class AlarmLayout extends AppCompatActivity {
         swtStop = findViewById(R.id.swtStop);
         Window window = getWindow();
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON|
-                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD|
-                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON |
+                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
+                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         getExtra();
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        KeyguardManager km = (KeyguardManager) this.getSystemService(KEYGUARD_SERVICE);
+        if (km.isKeyguardLocked())// to check screen is locked
+            super.onDestroy();
+        else if (!km.isKeyguardLocked()) {
+            super.onResume();
+        }
     }
 
     @Override
@@ -63,11 +59,11 @@ public class AlarmLayout extends AppCompatActivity {
         super.onResume();
     }
 
-    public void getExtra(){
+    public void getExtra() {
         runAnimation();
         intentAlarm = getIntent();
         Uri uriMusic = Uri.parse(intentAlarm.getStringExtra("pathMusic"));
-        ringtone = MediaPlayer.create(this,uriMusic);
+        ringtone = MediaPlayer.create(this, uriMusic);
         ringtone.start();
         swtStop.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -75,12 +71,13 @@ public class AlarmLayout extends AppCompatActivity {
             public void onClick(View view) {
                 ringtone.release();
                 finishAndRemoveTask();
+                onDestroy();
             }
         });
     }
 
-    public void runAnimation(){
-        Animation a = AnimationUtils.loadAnimation(this,R.anim.animation_picture);
+    public void runAnimation() {
+        Animation a = AnimationUtils.loadAnimation(this, R.anim.animation_picture);
         a.reset();
         tv.clearAnimation();
         tv.startAnimation(a);

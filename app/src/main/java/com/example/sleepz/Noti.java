@@ -44,15 +44,15 @@ public class Noti extends Service {
         PendingIntent Spending = PendingIntent.getBroadcast(this, 0,Sintent,0);
         PendingIntent Wpending = PendingIntent.getBroadcast(this, 0,Wintent,0);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_background)
-                .setContentTitle("title")
-                .setContentText("textContent")
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("Tới giờ ngủ rồi")
+                .setContentText("Ngủ cho ngày mai có một sức khỏe tốt nào")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .addAction(R.drawable.ic_launcher_background,"SLEEPING",Spending)
-                .addAction(R.drawable.ic_launcher_background,"WAKED",Wpending);
+                .addAction(R.mipmap.ic_launcher,"SLEEPING",Spending)
+                .addAction(R.mipmap.ic_launcher,"WAKED",Wpending);
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(notificationId, mBuilder.build());
     }
