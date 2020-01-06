@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,14 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
        }
 
         return inflater.inflate(R.layout.fragment_tips, container, false);
+    }
+
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mediaPlayer.stop();
     }
 
     @Override
@@ -146,9 +155,9 @@ public class TipsFragment extends Fragment implements View.OnClickListener {
 
     private void addSong() {
         arraySong = new ArrayList<>();
-        arraySong.add(new TipMusic("Bài 1", R.raw.bensoundallthat));
-        arraySong.add(new TipMusic("Bài 2", R.raw.bensoundcreativeminds));
-        arraySong.add(new TipMusic("Bài 3", R.raw.bensounddreams));
+        arraySong.add(new TipMusic("Bài 1", R.raw.chucbengungon));
+        arraySong.add(new TipMusic("Bài 2", R.raw.themoon));
+        arraySong.add(new TipMusic("Bài 3", R.raw.muavanuocmat));
         arraySong.add(new TipMusic("Bài 4", R.raw.bensounderf));
         arraySong.add(new TipMusic("Bài 5", R.raw.bensoundmemories));
         arraySong.add(new TipMusic("Bài 6", R.raw.bensoundonceagain));
