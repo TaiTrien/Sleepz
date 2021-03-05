@@ -22,7 +22,6 @@ This is my first mobile app, so i want to make something that help people health
 * We coded this app by using ANDROID STUDIO.
 
 # Getting started
-## Presiquities INSTALL SQL SERVER version 2017
 ## Installing
 
 # Contributing 
